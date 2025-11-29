@@ -1,0 +1,342 @@
+/* --- Root Variables & Theme --- */
+:root {
+    --bg-color: #0b0c10;
+    --bg-secondary: #1f2833;
+    --primary-color: #66fcf1;   /* Neon Cyan */
+    --secondary-color: #45a29e; /* Teal */
+    --accent-color: #ff0055;    /* Neon Pink */
+    --text-color: #c5c6c7;
+    --text-white: #ffffff;
+    --card-bg: rgba(31, 40, 51, 0.6); /* Glass effect */
+    --border-radius: 12px;
+    --glow: 0 0 10px rgba(102, 252, 241, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(102, 252, 241, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 85, 0.05) 0%, transparent 20%);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* --- Navigation --- */
+.navbar {
+    background: rgba(11, 12, 16, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo i { color: var(--primary-color); text-shadow: var(--glow); }
+
+.nav-links a {
+    margin: 0 15px;
+    font-weight: 600;
+    position: relative;
+    color: var(--text-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: 0.3s;
+    box-shadow: var(--glow);
+}
+
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--text-white); }
+
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+
+.search-form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.search-form:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: var(--glow);
+}
+
+.search-form input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    width: 200px;
+}
+
+.search-form button {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.btn-login, .btn-register, .btn-submit, .btn-add-cart {
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.btn-login {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+}
+
+.btn-login:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: var(--glow);
+}
+
+.btn-register, .btn-submit, .btn-add-cart {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    color: #000;
+    box-shadow: 0 4px 15px rgba(102, 252, 241, 0.3);
+}
+
+.btn-register:hover, .btn-submit:hover, .btn-add-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 252, 241, 0.5);
+}
+
+.cart-icon { position: relative; font-size: 1.3rem; transition: 0.3s; }
+.cart-icon:hover { color: var(--primary-color); transform: scale(1.1); }
+
+#cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--accent-color);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+/* --- Main Content --- */
+.main-content { flex: 1; padding: 40px 0; }
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--text-white);
+    border-left: 5px solid var(--accent-color);
+    padding-left: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- Game Grid (Glassmorphism) --- */
+/* --- IMPROVED GRID SYSTEM --- */
+.game-grid {
+    display: grid;
+    /* Fit more items by lowering min-width to 200px */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+.game-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    
+    /* Animation setup */
+    opacity: 1; 
+    transform: translateY(0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease;
+}
+
+/* Interactive Hover Effect (3D Lift) */
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(102, 252, 241, 0.2); /* Neon glow shadow */
+    border-color: var(--primary-color);
+    z-index: 10;
+}
+
+.game-image {
+    width: 100%;
+    height: 160px; /* Slightly shorter to see more content */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-image {
+    transform: scale(1.1); /* Zoom effect on image */
+}
+
+.game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.game-card:hover .game-image { transform: scale(1.05); }
+
+.game-info { padding: 20px; }
+
+.game-category {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.game-title {
+    font-size: 1.3rem;
+    margin: 10px 0;
+    color: var(--text-white);
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rating { color: #ffd700; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+.price { font-weight: bold; color: var(--accent-color); font-size: 1.2rem; }
+
+.btn-add-cart {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--border-radius);
+}
+
+/* --- Forms --- */
+.auth-box {
+    max-width: 450px;
+    margin: 50px auto;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(102, 252, 241, 0.2);
+    outline: none;
+}
+
+/* --- Footer --- */
+.footer {
+    background: #050608;
+    padding: 60px 0 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer h3 { color: var(--text-white); margin-bottom: 20px; }
+.footer ul li { margin-bottom: 10px; }
+.footer a:hover { color: var(--primary-color); padding-left: 5px; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .navbar .container { flex-direction: column; gap: 15px; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: center; }
+    .nav-actions { width: 100%; flex-direction: column; gap: 15px; }
+    .search-form { width: 100%; }
+    .search-form input { width: 100%; }
+}
