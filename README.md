@@ -38,11 +38,11 @@ Email: gauri@test.com
 
 Password: password123
 
-User Account (To buy games): you can even sign up and create ur own account.
+User Account (To buy games):
 
-Email: xyz@gmai.com
+Email: user01@gmail.com
 
-Password: 12345
+Password: pass12345
 
 ## 🚀 Deployment Link
 **Live Project Link:** https://webdevproject.gamer.gd
